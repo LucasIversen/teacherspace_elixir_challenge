@@ -18,7 +18,7 @@ defmodule TeacherspaceElixirChallengeTest do
       end
 
       test "capitalizes names correctly", %{users: users} do
-        result = TeacherspaceElixirChallenge.capitalize_names(users)
+        result = users |> TeacherspaceElixirChallenge.capitalize_names()
 
         expected = [
           %{name: "John Doe", city: "New York", birthdate: "1982-11-05"},
@@ -30,7 +30,7 @@ defmodule TeacherspaceElixirChallengeTest do
       end
 
       test "converts birthdates to DD/MM/YYYY format", %{users: users} do
-        result = TeacherspaceElixirChallenge.convert_birthdate_formats(users)
+        result = users |> TeacherspaceElixirChallenge.convert_birthdate_formats()
 
         expected = [
           %{name: "John Doe", city: "New York", birthdate: "05/11/1982"},
@@ -42,7 +42,7 @@ defmodule TeacherspaceElixirChallengeTest do
       end
 
       test "filters users by city", %{users: users} do
-        result = TeacherspaceElixirChallenge.process(users, city: "New York")
+        result = users |> TeacherspaceElixirChallenge.process(city: "New York")
 
         expected = [
           %{name: "John Doe", city: "New York", birthdate: "05/11/1982"},
@@ -53,7 +53,7 @@ defmodule TeacherspaceElixirChallengeTest do
       end
 
       test "empty array when no users in city", %{users: users} do
-        result = TeacherspaceElixirChallenge.process(users, city: "Chicago")
+        result = users |> TeacherspaceElixirChallenge.process(city: "Chicago")
 
         expected = []
 
@@ -61,7 +61,7 @@ defmodule TeacherspaceElixirChallengeTest do
       end
 
       test "process with city option", %{users: users} do
-        result = TeacherspaceElixirChallenge.process(users, city: "New York")
+        result = users |> TeacherspaceElixirChallenge.process(city: "New York")
 
         expected = [
           %{name: "John Doe", city: "New York", birthdate: "05/11/1982"},
@@ -72,7 +72,7 @@ defmodule TeacherspaceElixirChallengeTest do
       end
 
       test "process without city option", %{users: users} do
-        result = TeacherspaceElixirChallenge.process(users, %{})
+        result = users |> TeacherspaceElixirChallenge.process(%{})
 
         expected = [
           %{name: "John Doe", city: "New York", birthdate: "05/11/1982"},
